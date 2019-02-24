@@ -1,0 +1,32 @@
+language: python
+
+dist: xenial
+
+python:
+  - 2.7
+  - 3.4
+  - 3.5
+  - 3.6
+  - 3.7
+  - pypy2.7-6.0
+  - pypy3.5-6.0
+
+os:
+  - linux
+
+matrix:
+  allow_failures:
+    - python: 2.7
+    - python: pypy2.7-6.0
+
+install:
+  - pip install tox-travis
+  - pip install -e .[dev]
+  - python boots.py build
+
+script:
+  - tox
+
+after_success:
+  - tox -e codecov
+  - python boots.py publish

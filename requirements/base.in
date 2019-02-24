@@ -1,0 +1,3 @@
+--requirement pre.in
+
+attrs==18.2.0
