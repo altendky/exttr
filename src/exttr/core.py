@@ -39,7 +39,7 @@ def get(cls, attribute, extra):
 class Keyword:
     name = attr.ib()
     uuid = attr.ib(
-        default=None, 
+        default=None,
         converter=lambda x: None if x is None else uuid.UUID(x),
     )
 
@@ -68,19 +68,24 @@ class Registry:
                         (keyword == other_keyword)
                         and (keyword.uuid is None)
                     )
-                    
+
                     uuid_collision = (
                         (keyword.uuid == other_keyword.uuid)
                         and (keyword.name != other_keyword.name)
                     )
-                    
+
                     uuid_mismatch = (
                         (keyword.uuid != other_keyword.uuid)
                         and (keyword.name == other_keyword.name)
                     )
 
                     if name_collision or uuid_collision or uuid_mismatch:
-                        raise KeywordCollisionError('Existing: {}, New: {}'.format(other_keyword, keyword))
+                        raise KeywordCollisionError(
+                            'Existing: {}, New: {}'.format(
+                                other_keyword,
+                                keyword,
+                            ),
+                        )
 
             self.plugins.append(plugin)
 
@@ -101,7 +106,9 @@ class Registry:
         )
 
         if len(unknown_names) != 0:
-            raise UnknownKeywordError(', '.join(repr(name) for name in unknown_names))
+            raise UnknownKeywordError(
+                ', '.join(repr(name) for name in unknown_names),
+            )
 
         metadata = kwargs.setdefault('metadata', {})
         exttrs_metadata = metadata.setdefault(metadata_name, {})

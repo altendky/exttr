@@ -1,10 +1,8 @@
 import setuptools
 import versioneer
 
-
 with open('README.rst') as f:
     readme = f.read()
-
 
 setuptools.setup(
     name='exttr',

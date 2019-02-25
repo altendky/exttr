@@ -109,7 +109,7 @@ def test_multiple_keyword_matched_uuid():
 
 def test_attrs_keyword_collision():
     # just a selection of long-existing attr.ib() parameters
-    for name in ('default', 'repr', 'metadata'): 
+    for name in ('default', 'repr', 'metadata'):
         keyword = exttr.Keyword(name=name)
 
         with pytest.raises(exttr.AttrsCollisionError):
