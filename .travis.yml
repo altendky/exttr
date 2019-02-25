@@ -22,11 +22,12 @@ matrix:
 install:
   - pip install tox-travis
   - pip install -e .[dev]
-  - python boots.py build
 
 script:
   - tox
 
 after_success:
   - tox -e codecov
+  - python boots.py create
+  - python boots.py build
   - python boots.py publish
