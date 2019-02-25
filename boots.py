@@ -207,7 +207,6 @@ def common_create(
     if configuration.python_identifier.version >= (3, 6):
         extras.extend(('--prompt', configuration.resolved_venv_prompt()))
 
-    print('this is python:', repr(python))
     check_call(
         [
             python,
@@ -275,13 +274,6 @@ def sync_requirements(group, configuration):
 
 
 def sync_requirements_file(env, requirements, configuration):
-    check_call(
-        [
-            'ls',
-            '-la',
-            os.path.join('venv', 'bin'),
-        ]
-    )
     check_call(
         [
             os.path.join(configuration.resolved_venv_common_bin(), 'pip-sync'),
