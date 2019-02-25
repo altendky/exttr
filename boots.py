@@ -278,7 +278,7 @@ def sync_requirements_file(env, requirements, configuration):
         [
             'ls',
             '-la',
-            os.path.join('venv', 'Scripts'),
+            os.path.join('venv', 'bin'),
         ]
     )
     check_call(
