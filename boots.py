@@ -207,6 +207,7 @@ def common_create(
     if configuration.python_identifier.version >= (3, 6):
         extras.extend(('--prompt', configuration.resolved_venv_prompt()))
 
+    print('this is python:', repr(python))
     check_call(
         [
             python,
