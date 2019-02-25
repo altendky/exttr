@@ -5,6 +5,7 @@ del get_versions
 from exttr.core import (
     AttrsCollisionError,
     get,
+    get_all,
     Keyword,
     KeywordCollisionError,
     Plugin,

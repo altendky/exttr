@@ -23,15 +23,16 @@ class AttrsCollisionError(Exception):
     pass
 
 
-def get(cls, attribute, extra=None):
+def get_all(cls, attribute):
     fields = attr.fields(cls)
     field = getattr(fields, attribute)
     metadata = field.metadata[metadata_name]
 
-    if extra is None:
-        return metadata
+    return metadata
 
-    return metadata[extra]
+
+def get(cls, attribute, extra):
+    return get_all(cls=cls, attribute=attribute)[extra]
 
 
 @attr.s(frozen=True)
