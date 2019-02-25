@@ -23,6 +23,8 @@ install:
   - pip install tox-travis
   - pip install -e .[dev]
   - type python
+  - rm -rf "$(dirname "$(which python)")"
+  - type python
   - python boots.py create
   - python boots.py build
 
