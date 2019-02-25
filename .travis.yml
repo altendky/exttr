@@ -28,9 +28,7 @@ script:
 
 after_success:
   - tox -e codecov
-  - type python
-  - deactivate
-  - type python
+  - type python3.7
   - python boots.py create
   - python boots.py build
   - python boots.py publish
