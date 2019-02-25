@@ -30,7 +30,7 @@ With a little luck a better example will be provided later but for now, here's s
 A dev in ``#python`` was interested in having click_ build them attrs_-defined configuration objects.
 Here's a basic solution for that with the click options being defined on the attrs class attributes via a custom exttr keyword argument ``click=``.
 
-.. _attrs: https://github.com/python-attrs/attr
+.. _attrs: https://github.com/python-attrs/attrs
 .. _click: https://github.com/pallets/click
 
 .. code-block:: python
