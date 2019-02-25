@@ -276,6 +276,13 @@ def sync_requirements(group, configuration):
 def sync_requirements_file(env, requirements, configuration):
     check_call(
         [
+            'ls',
+            '-la',
+            os.path.join('venv', 'Scripts'),
+        ]
+    )
+    check_call(
+        [
             os.path.join(configuration.resolved_venv_common_bin(), 'pip-sync'),
             requirements,
         ],
