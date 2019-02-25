@@ -22,15 +22,15 @@ matrix:
 install:
   - pip install tox-travis
   - pip install -e .[dev]
-  - type python
-  - rm -rf "$(dirname "$(which python)")"
-  - type python
-  - python boots.py create
-  - python boots.py build
 
 script:
   - tox
 
 after_success:
   - tox -e codecov
+  - type python
+  - deactivate
+  - type python
+  - python boots.py create
+  - python boots.py build
   - python boots.py publish
