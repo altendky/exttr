@@ -22,6 +22,9 @@ matrix:
 install:
   - pip install tox-travis
   - pip install -e .[dev]
+  - python boots.py create
+  - type python
+  - ll venv/Scripts/
   - python boots.py build
 
 script:
