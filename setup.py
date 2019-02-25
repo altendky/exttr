@@ -12,6 +12,7 @@ setuptools.setup(
     description='Integrating extra metadata into attr.ib()',
     long_description=readme,
     long_description_content_type='text/x-rst',
+    url='https://github.com/altendky/exttr',
     packages=setuptools.find_packages('src'),
     package_dir={'': 'src'},
     version=versioneer.get_version(),
