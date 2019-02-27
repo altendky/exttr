@@ -42,3 +42,5 @@ jobs:
         python -m tox -e $(tox.env)
         python -m tox -e codecov
       displayName: 'Test'
+      env:
+        CODECOV_TOKEN: $(CODECOV_TOKEN)
