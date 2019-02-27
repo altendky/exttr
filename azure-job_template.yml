@@ -1,0 +1,43 @@
+parameters:
+  name: ''
+  vmImage: ''
+
+jobs:
+- job: ${{ parameters.name }}
+
+  pool:
+    vmImage: ${{ parameters.vmImage }}
+
+  strategy:
+    matrix:
+      cp27-64:
+        python.version: '2.7'
+        python.architecture: 'x64'
+        tox.env: 'py27'
+      cp34-64:
+        python.version: '3.4'
+        python.architecture: 'x64'
+        tox.env: 'py34'
+      cp35-64:
+        python.version: '3.5'
+        python.architecture: 'x64'
+        tox.env: 'py35'
+      cp36-64:
+        python.version: '3.6'
+        python.architecture: 'x64'
+        tox.env: 'py36'
+      cp37-64:
+        python.version: '3.7'
+        python.architecture: 'x64'
+        tox.env: 'py37'
+    maxParallel: 4
+
+  steps:
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '$(python.version)'
+        architecture: '$(python.architecture)'
+    - script: |
+        python -m pip install tox
+        python -m tox -e $(tox.env)
+      displayName: 'Test'
