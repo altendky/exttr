@@ -40,4 +40,5 @@ jobs:
     - script: |
         python -m pip install tox
         python -m tox -e $(tox.env)
+        python -m tox -e codecov
       displayName: 'Test'
