@@ -14,11 +14,6 @@ python:
 os:
   - linux
 
-matrix:
-  allow_failures:
-    - python: 2.7
-    - python: pypy2.7-6.0
-
 install:
   - pip install tox-travis
   - pip install -e .[dev]

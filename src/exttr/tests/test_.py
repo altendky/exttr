@@ -18,7 +18,7 @@ def test_register_keyword():
     exttr.register_keywords(keyword)
 
     @attr.s
-    class C:
+    class C(object):
         a = exttr.ib(blue=27)
 
     assert exttr.get_all(C, 'a') == {'blue': 27}
@@ -29,7 +29,7 @@ def test_check_keyword():
     exttr.register_keywords(keyword)
 
     @attr.s
-    class C:
+    class C(object):
         a = exttr.ib(blue=27)
 
     assert exttr.get(C, 'a', 'blue') == 27

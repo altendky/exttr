@@ -1,13 +1,14 @@
 import collections
 import functools
-import inspect
 import itertools
 import uuid
 
 import attr
 
+import exttr._utility
 
-attr_ib_keywords = inspect.signature(attr.ib).parameters.keys()
+
+attr_ib_keywords = exttr._utility.get_parameter_names(attr.ib)
 
 metadata_name = 'exttr'
 
@@ -36,7 +37,7 @@ def get(cls, attribute, extra):
 
 
 @attr.s(frozen=True)
-class Keyword:
+class Keyword(object):
     name = attr.ib()
     uuid = attr.ib(
         default=None,
@@ -45,7 +46,7 @@ class Keyword:
 
 
 @attr.s
-class Plugin:
+class Plugin(object):
     keywords = attr.ib(factory=list, converter=list)
 
     def register_keywords(self, *keywords):
@@ -54,7 +55,7 @@ class Plugin:
 
 
 @attr.s
-class Registry:
+class Registry(object):
     plugins = attr.ib(factory=list, converter=list)
 
     def register_plugins(self, *plugins):
@@ -97,9 +98,7 @@ class Registry:
 
     @functools.wraps(attr.ib)
     def create_attribute(self, *args, **kwargs):
-        signature = inspect.signature(attr.ib)
-        basic_names = set(signature.parameters.keys())
-        extra_names = set(kwargs.keys()) - basic_names
+        extra_names = set(kwargs.keys()) - set(attr_ib_keywords)
 
         unknown_names = (
             extra_names - {keyword.name for keyword in self.keywords()}
@@ -124,7 +123,7 @@ class Registry:
         basics = collections.OrderedDict(
             (k, v)
             for k, v in kwargs.items() 
-            if k in basic_names
+            if k in attr_ib_keywords
         )
 
         return attr.ib(*args, **basics)
