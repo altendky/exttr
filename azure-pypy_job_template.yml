@@ -7,7 +7,7 @@ parameters:
   version: ''
 
 jobs:
-- job: ${{ parameters.platform }}-PyPy
+- job: ${{ parameters.platform }}_PyPy
 
   pool:
     vmImage: ${{ parameters.vmImage }}

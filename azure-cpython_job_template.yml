@@ -3,7 +3,7 @@ parameters:
   vmImage: ''
 
 jobs:
-- job: ${{ parameters.platform }}-CPython
+- job: ${{ parameters.platform }}_CPython
 
   pool:
     vmImage: ${{ parameters.vmImage }}
