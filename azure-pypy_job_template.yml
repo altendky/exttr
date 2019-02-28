@@ -23,17 +23,17 @@ jobs:
 
   steps:
     - bash: |
-        echo "##vso[task.setvariable variable=PATH]$(Agent.WorkFolder)/pypy.tmp/pypy/bin:$(PATH)"
+        echo "##vso[task.setvariable variable=PATH]$(System.DefaultWorkingDirectory)/pypy.tmp/pypy/bin:$(PATH)"
       condition: eq( variables['Agent.OS'], 'Linux' )
     - bash: |
-        echo "##vso[task.setvariable variable=PATH]$(Agent.WorkFolder)/pypy.tmp/pypy/bin:$(PATH)"
+        echo "##vso[task.setvariable variable=PATH]$(System.DefaultWorkingDirectory)/pypy.tmp/pypy/bin:$(PATH)"
       condition: eq( variables['Agent.OS'], 'Darwin' )
     - bash: |
-        echo "##vso[task.setvariable variable=PATH]$(Agent.WorkFolder)\pypy.tmp\pypy;$(PATH)"
+        echo "##vso[task.setvariable variable=PATH]$(System.DefaultWorkingDirectory)\pypy.tmp\pypy;$(PATH)"
       condition: eq( variables['Agent.OS'], 'Windows_NT' )
     - bash: |
         echo PATH: "$(PATH)"
-        echo Agent.WorkFolder: "$(Agent.WorkFolder)"
+        echo System.DefaultWorkingDirectory: "$(System.DefaultWorkingDirectory)"
         echo PWD: ${PWD}
         mkdir pypy.tmp
         cd pypy.tmp
@@ -44,9 +44,9 @@ jobs:
         cd ..
         pwd
         ls -l
-        ls -l $(Agent.WorkFolder)
-        ls -l $(Agent.WorkFolder)/pypy.tmp
-        ls -l $(Agent.WorkFolder)/pypy.tmp/pypy
+        ls -l $(System.DefaultWorkingDirectory)
+        ls -l $(System.DefaultWorkingDirectory)/pypy.tmp
+        ls -l $(System.DefaultWorkingDirectory)/pypy.tmp/pypy
       displayName: 'Get PyPy'
     - bash: |
         echo PATH: "$(PATH)"
