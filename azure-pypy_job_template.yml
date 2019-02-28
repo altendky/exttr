@@ -1,12 +1,12 @@
 parameters:
-  name: ''
+  platform: ''
   vmImage: ''
   url: ''
   extracter: ''
   version: ''
 
 jobs:
-- job: PyPy - ${{ parameters.version }} - ${{ parameters.name }}
+- job: PyPy_${{ parameters.version }}_${{ parameters.platform }}
 
   pool:
     vmImage: ${{ parameters.vmImage }}
