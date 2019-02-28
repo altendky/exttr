@@ -20,7 +20,7 @@ jobs:
       vmImage: 'ubuntu-16.04'
       url: 'https://bitbucket.org/pypy/pypy/downloads/pypy2.7-v7.0.0-linux64.tar.bz2'
       extracter: 'bzip2 -dk'
-      version: '2.7'
+      version: '2_7'
 
   - template: azure-pypy_job_template.yml
     parameters:
@@ -28,7 +28,7 @@ jobs:
       vmImage: 'ubuntu-16.04'
       url: 'https://bitbucket.org/pypy/pypy/downloads/pypy3.5-v7.0.0-linux32.tar.bz2'
       extracter: 'bzip2 -dk'
-      version: '3.5'
+      version: '3_5'
 
   - template: azure-pypy_job_template.yml
     parameters:
@@ -36,7 +36,7 @@ jobs:
       vmImage: 'macOS-10.13'
       url: 'https://bitbucket.org/pypy/pypy/downloads/pypy2.7-v7.0.0-osx64.tar.bz2'
       extracter: 'bzip2 -dk'
-      version: '2.7'
+      version: '2_7'
 
   - template: azure-pypy_job_template.yml
     parameters:
@@ -44,7 +44,7 @@ jobs:
       vmImage: 'macOS-10.13'
       url: 'https://bitbucket.org/pypy/pypy/downloads/pypy3.5-v7.0.0-osx64.tar.bz2'
       extracter: 'bzip2 -dk'
-      version: '3.5'
+      version: '3_5'
 
   - template: azure-pypy_job_template.yml
     parameters:
@@ -52,7 +52,7 @@ jobs:
       vmImage: 'vs2017-win2016'
       url: 'https://bitbucket.org/pypy/pypy/downloads/pypy2.7-v7.0.0-win32.zip'
       extracter: 'unzip'
-      version: '2.7'
+      version: '2_7'
 
   - template: azure-pypy_job_template.yml
     parameters:
@@ -60,4 +60,4 @@ jobs:
       vmImage: 'vs2017-win2016'
       url: 'https://bitbucket.org/pypy/pypy/downloads/pypy3.5-v7.0.0-win32.zip'
       extracter: 'unzip'
-      version: '3.5'
+      version: '3_5'
