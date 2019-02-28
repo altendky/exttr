@@ -38,7 +38,7 @@ jobs:
         versionSpec: '$(python.version)'
         architecture: '$(python.architecture)'
     - script: |
-        python -m pip install tox
+        python -m pip install tox pytest-azurepipelines
         python -m tox -e $(tox.env)
         python -m tox -e codecov
       displayName: 'Test'
