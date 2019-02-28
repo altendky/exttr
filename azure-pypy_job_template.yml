@@ -33,7 +33,8 @@ jobs:
       condition: eq( variables['Agent.OS'], 'Windows_NT' )
     - bash: |
         echo PATH: "$(PATH)"
-        echo PWD: "$(PWD)"
+        echo Agent.WorkFolder: "$(Agent.WorkFolder)"
+        echo PWD: ${PWD}
         mkdir pypy.tmp
         cd pypy.tmp
         curl --location --output archive $(url)
