@@ -23,9 +23,6 @@ jobs:
 
   steps:
     - bash: |
-        sudo apt-get install libexpat1 || true
-      displayName: 'Get libexpat1'
-    - bash: |
         echo PATH: ${PATH}
         echo "##vso[task.setvariable variable=PATH]${PWD}/pypy.tmp/pypy/bin:${PWD}/pypy.tmp/pypy:${PATH}"
         mkdir pypy.tmp

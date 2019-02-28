@@ -19,7 +19,7 @@ jobs:
       platform: Linux
       vmImage: 'ubuntu-16.04'
       url_2: 'https://bitbucket.org/pypy/pypy/downloads/pypy2.7-v7.0.0-linux64.tar.bz2'
-      url_3: 'https://bitbucket.org/pypy/pypy/downloads/pypy3.5-v7.0.0-linux32.tar.bz2'
+      url_3: 'https://bitbucket.org/pypy/pypy/downloads/pypy3.5-v7.0.0-linux64.tar.bz2'
       extracter: 'tar -xvf'
 
   - template: azure-pypy_job_template.yml
