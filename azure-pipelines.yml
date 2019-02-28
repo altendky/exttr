@@ -4,16 +4,6 @@ jobs:
       platform: Linux
       vmImage: 'ubuntu-16.04'
 
-  - template: azure-cpython_job_template.yml
-    parameters:
-      platform: macOS
-      vmImage: 'macOS-10.13'
-
-  - template: azure-cpython_job_template.yml
-    parameters:
-      platform: Windows
-      vmImage: 'vs2017-win2016'
-
   - template: azure-pypy_job_template.yml
     parameters:
       platform: Linux
@@ -22,6 +12,11 @@ jobs:
       url_3: 'https://bitbucket.org/pypy/pypy/downloads/pypy3.5-v7.0.0-linux64.tar.bz2'
       extracter: 'tar -xvf'
 
+  - template: azure-cpython_job_template.yml
+    parameters:
+      platform: macOS
+      vmImage: 'macOS-10.13'
+
   - template: azure-pypy_job_template.yml
     parameters:
       platform: macOS
@@ -29,6 +24,11 @@ jobs:
       url_2: 'https://bitbucket.org/pypy/pypy/downloads/pypy2.7-v7.0.0-osx64.tar.bz2'
       url_3: 'https://bitbucket.org/pypy/pypy/downloads/pypy3.5-v7.0.0-osx64.tar.bz2'
       extracter: 'tar -xvf'
+
+  - template: azure-cpython_job_template.yml
+    parameters:
+      platform: Windows
+      vmImage: 'vs2017-win2016'
 
   - template: azure-pypy_job_template.yml
     parameters:

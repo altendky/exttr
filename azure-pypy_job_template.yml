@@ -7,17 +7,17 @@ parameters:
   version: ''
 
 jobs:
-- job: PyPy_${{ parameters.platform }}
+- job: ${{ parameters.platform }}-PyPy
 
   pool:
     vmImage: ${{ parameters.vmImage }}
 
   strategy:
     matrix:
-      2_7:
+      2.7:
         url: ${{ parameters.url_2 }}
         pypy_binary: 'pypy'
-      3_5:
+      3.5:
         url: ${{ parameters.url_3 }}
         pypy_binary: 'pypy3'
 

@@ -3,30 +3,30 @@ parameters:
   vmImage: ''
 
 jobs:
-- job: CPython_${{ parameters.platform }}
+- job: ${{ parameters.platform }}-CPython
 
   pool:
     vmImage: ${{ parameters.vmImage }}
 
   strategy:
     matrix:
-      2_7:
+      2.7:
         python.version: '2.7'
         python.architecture: 'x64'
         tox.env: 'py27'
-      3_4:
+      3.4:
         python.version: '3.4'
         python.architecture: 'x64'
         tox.env: 'py34'
-      3_5:
+      3.5:
         python.version: '3.5'
         python.architecture: 'x64'
         tox.env: 'py35'
-      3_6:
+      3.6:
         python.version: '3.6'
         python.architecture: 'x64'
         tox.env: 'py36'
-      3_7:
+      3.7:
         python.version: '3.7'
         python.architecture: 'x64'
         tox.env: 'py37'
