@@ -39,8 +39,6 @@ jobs:
         echo PATH: ${PATH}
         type pypy
         pypy --version
-        type pypy3
-        pypy3 --version
       displayName: 'Check for PyPy'
     - bash: |
         pypy -m pip install tox pytest-azurepipelines
