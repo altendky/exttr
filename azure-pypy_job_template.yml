@@ -42,11 +42,6 @@ jobs:
         rm archive
         mv ./* pypy
         cd ..
-        pwd
-        ls -l
-        ls -l $(System.DefaultWorkingDirectory)
-        ls -l $(System.DefaultWorkingDirectory)/pypy.tmp
-        ls -l $(System.DefaultWorkingDirectory)/pypy.tmp/pypy
       displayName: 'Get PyPy'
     - bash: |
         echo PATH: "$(PATH)"
