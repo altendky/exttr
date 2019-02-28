@@ -23,13 +23,13 @@ jobs:
 
   steps:
     - bash: |
-        echo "##vso[task.setvariable variable=PATH]$(PWD)/pypy.tmp/pypy/bin:$(PATH)"
+        echo "##vso[task.setvariable variable=PATH]$(Agent.WorkFolder)/pypy.tmp/pypy/bin:$(PATH)"
       condition: eq( variables['Agent.OS'], 'Linux' )
     - bash: |
-        echo "##vso[task.setvariable variable=PATH]$(PWD)/pypy.tmp/pypy/bin:$(PATH)"
+        echo "##vso[task.setvariable variable=PATH]$(Agent.WorkFolder)/pypy.tmp/pypy/bin:$(PATH)"
       condition: eq( variables['Agent.OS'], 'Darwin' )
     - bash: |
-        echo "##vso[task.setvariable variable=PATH]$(PWD)/pypy.tmp/pypy;$(PATH)"
+        echo "##vso[task.setvariable variable=PATH]$(Agent.WorkFolder)/pypy.tmp/pypy;$(PATH)"
       condition: eq( variables['Agent.OS'], 'Windows_NT' )
     - bash: |
         echo PATH: $(PATH)
