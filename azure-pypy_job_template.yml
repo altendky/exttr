@@ -42,6 +42,7 @@ jobs:
         rm archive
         mv ./* pypy
         cd ..
+        ls -l $(Agent.WorkFolder)/pypy.tmp/pypy
       displayName: 'Get PyPy'
     - bash: |
         echo PATH: "$(PATH)"
@@ -59,5 +60,3 @@ jobs:
       displayName: 'Test'
       env:
         CODECOV_TOKEN: '$(CODECOV_TOKEN)'
-
-
