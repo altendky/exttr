@@ -31,7 +31,7 @@ jobs:
         rm archive
         mv ./* pypy
         cd ..
-        ll pypy.tmp/pypy
+        ls -l pypy.tmp/pypy
         echo ${PATH}
         type pypy
         pypy --version
@@ -39,7 +39,7 @@ jobs:
         pypy3 --version
       displayName: 'Get PyPy'
     - script: |
-        ll pypy.tmp/pypy
+        ls -l pypy.tmp/pypy
         echo ${PATH}
         type pypy
         pypy --version
