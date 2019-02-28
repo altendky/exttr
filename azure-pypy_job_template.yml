@@ -23,6 +23,7 @@ jobs:
 
   steps:
     - script: |
+        echo PATH: ${PATH}
         echo '##vso[task.setvariable variable=PATH]${PWD}/pypy.tmp/pypy:${PATH}'
         mkdir pypy.tmp
         cd pypy.tmp
@@ -32,7 +33,7 @@ jobs:
         mv ./* pypy
         cd ..
         ls -l pypy.tmp/pypy
-        echo ${PATH}
+        echo PATH: ${PATH}
         type pypy
         pypy --version
         type pypy3
@@ -40,7 +41,7 @@ jobs:
       displayName: 'Get PyPy'
     - script: |
         ls -l pypy.tmp/pypy
-        echo ${PATH}
+        echo PATH: ${PATH}
         type pypy
         pypy --version
         type pypy3
