@@ -37,7 +37,7 @@ jobs:
       inputs:
         versionSpec: '$(python.version)'
         architecture: '$(python.architecture)'
-    - script: |
+    - bash: |
         python -m pip install tox
         python -m tox -e $(tox.env)
         python -m tox -e codecov

@@ -22,7 +22,7 @@ jobs:
         tox.env: 'pypy3'
 
   steps:
-    - script: |
+    - bash: |
         echo PATH: ${PATH}
         echo "##vso[task.setvariable variable=PATH]${PWD}/pypy.tmp/pypy:${PATH}"
         mkdir pypy.tmp
@@ -39,7 +39,7 @@ jobs:
         type pypy3
         pypy3 --version
       displayName: 'Get PyPy'
-    - script: |
+    - bash: |
         ls -l pypy.tmp/pypy
         echo PATH: ${PATH}
         type pypy
@@ -47,7 +47,7 @@ jobs:
         type pypy3
         pypy3 --version
       displayName: 'Check for PyPy'
-    - script: |
+    - bash: |
         pypy -m pip install tox pytest-azurepipelines
         pypy -m tox -e $(tox.env)
         pypy -m tox -e codecov
