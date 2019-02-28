@@ -23,10 +23,17 @@ jobs:
 
   steps:
     - bash: |
-        echo PATH: ${PATH}
-        echo PWD: ${PWD}
-        echo new path: ${PWD}/pypy.tmp/pypy/bin:${PWD}/pypy.tmp/pypy:${PATH}
-        echo "##vso[task.setvariable variable=PATH]${PWD}/pypy.tmp/pypy/bin:${PWD}/pypy.tmp/pypy:${PATH}"
+        echo "##vso[task.setvariable variable=PATH]$(PWD)/pypy.tmp/pypy/bin:$(PATH)"
+      condition: eq( variables['Agent.OS'], 'Linux' )
+    - bash: |
+        echo "##vso[task.setvariable variable=PATH]$(PWD)/pypy.tmp/pypy/bin:$(PATH)"
+      condition: eq( variables['Agent.OS'], 'Darwin' )
+    - bash: |
+        echo "##vso[task.setvariable variable=PATH]$(PWD)/pypy.tmp/pypy;$(PATH)"
+      condition: eq( variables['Agent.OS'], 'Windows_NT' )
+    - bash: |
+        echo PATH: $(PATH)
+        echo PWD: $(PWD)
         mkdir pypy.tmp
         cd pypy.tmp
         curl --location --output archive $(url)
@@ -36,7 +43,7 @@ jobs:
         cd ..
       displayName: 'Get PyPy'
     - bash: |
-        echo PATH: ${PATH}
+        echo PATH: $(PATH)
         type $(pypy_binary)
         $(pypy_binary) --version
       displayName: 'Check for PyPy'
