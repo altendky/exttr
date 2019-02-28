@@ -1,18 +1,18 @@
 jobs:
-  - template: azure-cpython_job_template.yml
-    parameters:
-      platform: Linux
-      vmImage: 'ubuntu-16.04'
-
-  - template: azure-cpython_job_template.yml
-    parameters:
-      platform: macOS
-      vmImage: 'macOS-10.13'
-
-  - template: azure-cpython_job_template.yml
-    parameters:
-      platform: Windows
-      vmImage: 'vs2017-win2016'
+#  - template: azure-cpython_job_template.yml
+#    parameters:
+#      platform: Linux
+#      vmImage: 'ubuntu-16.04'
+#
+#  - template: azure-cpython_job_template.yml
+#    parameters:
+#      platform: macOS
+#      vmImage: 'macOS-10.13'
+#
+#  - template: azure-cpython_job_template.yml
+#    parameters:
+#      platform: Windows
+#      vmImage: 'vs2017-win2016'
 
   - template: azure-pypy_job_template.yml
     parameters:
