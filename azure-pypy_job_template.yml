@@ -12,6 +12,7 @@ jobs:
     vmImage: ${{ parameters.vmImage }}
 
   steps:
+    - script: |
         echo '##vso[task.setvariable variable=PATH]$(PATH);$(PWD)/pypy.tmp/pypy'
         mkdir pypy.tmp
         cd pypy.tmp
