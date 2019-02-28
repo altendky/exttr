@@ -41,6 +41,10 @@ jobs:
         pypy --version
       displayName: 'Check for PyPy'
     - bash: |
+        curl --output pypy.tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py
+        pypy pypy.tmp/get-pip.py
+      displayName: 'Get PIP'
+    - bash: |
         pypy -m pip install tox pytest-azurepipelines
         pypy -m tox -e $(tox.env)
         pypy -m tox -e codecov
