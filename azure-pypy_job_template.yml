@@ -24,7 +24,7 @@ jobs:
   steps:
     - bash: |
         echo PATH: ${PATH}
-        echo "##vso[task.setvariable variable=PATH]${PWD}/pypy.tmp/pypy:${PATH}"
+        echo "##vso[task.setvariable variable=PATH]${PWD}/pypy.tmp/pypy/bin:${PWD}/pypy.tmp/pypy:${PATH}"
         mkdir pypy.tmp
         cd pypy.tmp
         curl --location --output archive $(url)
@@ -33,11 +33,6 @@ jobs:
         mv ./* pypy
         cd ..
         ls -l pypy.tmp/pypy
-        echo PATH: ${PATH}
-        type pypy
-        pypy --version
-        type pypy3
-        pypy3 --version
       displayName: 'Get PyPy'
     - bash: |
         ls -l pypy.tmp/pypy
