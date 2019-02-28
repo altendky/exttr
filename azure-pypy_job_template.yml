@@ -23,7 +23,7 @@ jobs:
 
   steps:
     - bash: |
-        - sudo apt-get install libexpat1
+        sudo apt-get install libexpat1
       displayName: 'Get libexpat1'
       continueOnError: true
     - bash: |
