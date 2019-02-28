@@ -42,6 +42,10 @@ jobs:
         rm archive
         mv ./* pypy
         cd ..
+        pwd
+        ls -l
+        ls -l $(Agent.WorkFolder)
+        ls -l $(Agent.WorkFolder)/pypy.tmp
         ls -l $(Agent.WorkFolder)/pypy.tmp/pypy
       displayName: 'Get PyPy'
     - bash: |
