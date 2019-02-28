@@ -32,12 +32,8 @@ jobs:
         rm archive
         mv ./* pypy
         cd ..
-        ls -l pypy.tmp/pypy
-        ls -l pypy.tmp/pypy/bin
       displayName: 'Get PyPy'
     - bash: |
-        ls -l pypy.tmp/pypy
-        ls -l pypy.tmp/pypy/bin
         echo PATH: ${PATH}
         type $(pypy_binary)
         $(pypy_binary) --version
