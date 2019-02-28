@@ -1,22 +1,32 @@
 parameters:
   platform: ''
   vmImage: ''
-  url: ''
+  url_2: ''
+  url_3: ''
   extracter: ''
   version: ''
 
 jobs:
-- job: PyPy_${{ parameters.version }}_${{ parameters.platform }}
+- job: PyPy_${{ parameters.platform }}
 
   pool:
     vmImage: ${{ parameters.vmImage }}
+
+  strategy:
+    matrix:
+      2_7:
+        url: ${{ parameters.url_2 }}
+        tox.env: 'pypy'
+      3_5:
+        url: ${{ parameters.url_3 }}
+        tox.env: 'pypy3'
 
   steps:
     - script: |
         echo '##vso[task.setvariable variable=PATH]${PWD}/pypy.tmp/pypy:${PATH}'
         mkdir pypy.tmp
         cd pypy.tmp
-        curl --location --output archive '${{ parameters.url }}'
+        curl --location --output archive $(url)
         ${{ parameters.extracter }} archive
         rm archive
         mv ./* pypy
