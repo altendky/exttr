@@ -16,10 +16,10 @@ jobs:
     matrix:
       2_7:
         url: ${{ parameters.url_2 }}
-        tox.env: 'pypy'
+        pypy_binary: 'pypy'
       3_5:
         url: ${{ parameters.url_3 }}
-        tox.env: 'pypy3'
+        pypy_binary: 'pypy3'
 
   steps:
     - bash: |
@@ -33,21 +33,23 @@ jobs:
         mv ./* pypy
         cd ..
         ls -l pypy.tmp/pypy
+        ls -l pypy.tmp/pypy/bin
       displayName: 'Get PyPy'
     - bash: |
         ls -l pypy.tmp/pypy
+        ls -l pypy.tmp/pypy/bin
         echo PATH: ${PATH}
-        type pypy
-        pypy --version
+        type $(pypy_binary)
+        $(pypy_binary) --version
       displayName: 'Check for PyPy'
     - bash: |
         curl --output pypy.tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py
-        pypy pypy.tmp/get-pip.py
+        $(pypy_binary) pypy.tmp/get-pip.py
       displayName: 'Get PIP'
     - bash: |
-        pypy -m pip install tox pytest-azurepipelines
-        pypy -m tox -e $(tox.env)
-        pypy -m tox -e codecov
+        $(pypy_binary) -m pip install tox pytest-azurepipelines
+        $(pypy_binary) -m tox -e $(pypy_binary)
+        $(pypy_binary) -m tox -e codecov
       displayName: 'Test'
       env:
         CODECOV_TOKEN: '$(CODECOV_TOKEN)'
