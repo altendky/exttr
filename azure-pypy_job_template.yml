@@ -54,7 +54,7 @@ jobs:
       displayName: 'Get PIP'
     - bash: |
         $(pypy_binary) -m pip install tox pytest-azurepipelines
-        $(pypy_binary) -m tox -e $(pypy_binary)
+        $(pypy_binary) -m tox -e $(pypy_binary) --installpkg dist/*.whl
       displayName: 'Test'
     - bash: |
         $(pypy_binary) -m tox -e codecov

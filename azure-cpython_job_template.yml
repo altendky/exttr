@@ -43,7 +43,7 @@ jobs:
         architecture: '$(python.architecture)'
     - bash: |
         python -m pip install tox pytest-azurepipelines
-        python -m tox -e $(tox.env)
+        python -m tox -e $(tox.env) --installpkg dist/*.whl
       displayName: 'Test'
     - bash: |
         python -m tox -e codecov
