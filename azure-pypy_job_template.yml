@@ -5,9 +5,11 @@ parameters:
   url_3: ''
   extracter: ''
   version: ''
+  dependsOn: ''
 
 jobs:
 - job: ${{ parameters.platform }}_PyPy
+  dependsOn: ${{ parameters.dependsOn }}
 
   pool:
     vmImage: ${{ parameters.vmImage }}
