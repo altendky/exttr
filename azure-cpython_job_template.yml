@@ -5,6 +5,7 @@ parameters:
 
 jobs:
 - job: ${{ parameters.platform }}_CPython
+  displayName: ${{ parameters.platform }} CPython
   dependsOn: ${{ parameters.dependsOn }}
 
   pool:
@@ -35,14 +36,17 @@ jobs:
     maxParallel: 4
 
   steps:
+    - template: azure-download_artifact_step_template.yml
     - task: UsePythonVersion@0
       inputs:
         versionSpec: '$(python.version)'
         architecture: '$(python.architecture)'
     - bash: |
-        python -m pip install tox
-        python -m tox -e $(tox.env)
-        python -m tox -e codecov
+        python -m pip install tox pytest-azurepipelines
+        python -m tox -e $(tox.env) --installpkg dist/*.whl
       displayName: 'Test'
+    - bash: |
+        python -m tox -e codecov
+      displayName: 'Upload Coverage'
       env:
         CODECOV_TOKEN: '$(CODECOV_TOKEN)'
