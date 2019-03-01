@@ -3,6 +3,8 @@ trigger:
 
 jobs:
   - job: build_wheel
+    pool:
+      vmImage: 'ubuntu-16.04'
     steps:
       - task: UsePythonVersion@0
         inputs:
@@ -16,7 +18,7 @@ jobs:
       - task: PublishPipelineArtifact@0
         inputs:
           artifactName: 'dist'
-          targetPath: 'dist/*'
+          targetPath: '$(System.DefaultWorkingDirectory)/dist/*'
 
   - template: azure-cpython_job_template.yml
     parameters:
