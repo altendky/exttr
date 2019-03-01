@@ -1,0 +1,46 @@
+parameters:
+  platform: ''
+  vmImage: ''
+
+jobs:
+- job: ${{ parameters.platform }}_CPython
+
+  pool:
+    vmImage: ${{ parameters.vmImage }}
+
+  strategy:
+    matrix:
+      2.7:
+        python.version: '2.7'
+        python.architecture: 'x64'
+        tox.env: 'py27'
+      3.4:
+        python.version: '3.4'
+        python.architecture: 'x64'
+        tox.env: 'py34'
+      3.5:
+        python.version: '3.5'
+        python.architecture: 'x64'
+        tox.env: 'py35'
+      3.6:
+        python.version: '3.6'
+        python.architecture: 'x64'
+        tox.env: 'py36'
+      3.7:
+        python.version: '3.7'
+        python.architecture: 'x64'
+        tox.env: 'py37'
+    maxParallel: 4
+
+  steps:
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '$(python.version)'
+        architecture: '$(python.architecture)'
+    - bash: |
+        python -m pip install tox
+        python -m tox -e $(tox.env)
+        python -m tox -e codecov
+      displayName: 'Test'
+      env:
+        CODECOV_TOKEN: '$(CODECOV_TOKEN)'
