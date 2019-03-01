@@ -9,12 +9,11 @@ jobs:
           python -m pip install wheel
           python setup.py sdist
           python setup.py bdist_wheel
-          cp dist/* '$(Build.ArtifactStagingDirectory)'
         displayName: Build Wheel
-      - task: PublishBuildArtifacts@1
+      - task: PublishPipelineArtifact@0
         inputs:
-          pathtoPublish: '$(Build.ArtifactStagingDirectory)'
-          artifactName: drop
+          artifactName: 'dist'
+          targetPath: 'dist/*'
 
   - template: azure-cpython_job_template.yml
     parameters:
