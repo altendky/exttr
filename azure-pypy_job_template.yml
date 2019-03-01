@@ -9,6 +9,7 @@ parameters:
 
 jobs:
 - job: ${{ parameters.platform }}_PyPy
+  displayName: ${{ parameters.platform }} PyPy
   dependsOn: ${{ parameters.dependsOn }}
 
   pool:

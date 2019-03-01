@@ -5,6 +5,7 @@ parameters:
 
 jobs:
 - job: ${{ parameters.platform }}_CPython
+  displayName: ${{ parameters.platform }} CPython
   dependsOn: ${{ parameters.dependsOn }}
 
   pool:
