@@ -14,9 +14,6 @@ jobs:
           python -m pip install wheel
           python setup.py sdist
           python setup.py bdist_wheel
-          pwd
-          ls -l
-          ls -l dist
         displayName: Build Wheel
       - task: PublishPipelineArtifact@0
         inputs:
@@ -27,7 +24,6 @@ jobs:
     parameters:
       platform: Linux
       vmImage: 'ubuntu-16.04'
-      dependsOn: build_wheel
 
   - template: azure-pypy_job_template.yml
     parameters:
@@ -36,13 +32,11 @@ jobs:
       url_2: 'https://bitbucket.org/pypy/pypy/downloads/pypy2.7-v7.0.0-linux64.tar.bz2'
       url_3: 'https://bitbucket.org/pypy/pypy/downloads/pypy3.5-v7.0.0-linux64.tar.bz2'
       extracter: 'tar -xvf'
-      dependsOn: build_wheel
 
   - template: azure-cpython_job_template.yml
     parameters:
       platform: macOS
       vmImage: 'macOS-10.13'
-      dependsOn: build_wheel
 
   - template: azure-pypy_job_template.yml
     parameters:
@@ -51,13 +45,11 @@ jobs:
       url_2: 'https://bitbucket.org/pypy/pypy/downloads/pypy2.7-v7.0.0-osx64.tar.bz2'
       url_3: 'https://bitbucket.org/pypy/pypy/downloads/pypy3.5-v7.0.0-osx64.tar.bz2'
       extracter: 'tar -xvf'
-      dependsOn: build_wheel
 
   - template: azure-cpython_job_template.yml
     parameters:
       platform: Windows
       vmImage: 'vs2017-win2016'
-      dependsOn: build_wheel
 
   - template: azure-pypy_job_template.yml
     parameters:
@@ -66,4 +58,3 @@ jobs:
       url_2: 'https://bitbucket.org/pypy/pypy/downloads/pypy2.7-v7.0.0-win32.zip'
       url_3: 'https://bitbucket.org/pypy/pypy/downloads/pypy3.5-v7.0.0-win32.zip'
       extracter: 'unzip'
-      dependsOn: build_wheel
