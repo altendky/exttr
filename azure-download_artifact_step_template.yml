@@ -3,6 +3,3 @@ steps:
     inputs:
       artifactName: 'dist'
       targetPath: $(System.DefaultWorkingDirectory)/dist
-  - bash: |
-      ls -l
-      ls -l dist
