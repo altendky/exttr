@@ -21,7 +21,7 @@ jobs:
       - task: PublishPipelineArtifact@0
         inputs:
           artifactName: 'dist'
-          targetPath: '$(System.DefaultWorkingDirectory)/dist/*'
+          targetPath: '$(System.DefaultWorkingDirectory)/dist/'
 
   - template: azure-cpython_job_template.yml
     parameters:
