@@ -2,6 +2,24 @@ trigger:
   - master
 
 jobs:
+  - job: build_wheel
+    pool:
+      vmImage: 'ubuntu-16.04'
+    steps:
+      - task: UsePythonVersion@0
+        inputs:
+          versionSpec: '3.7'
+          architecture: 'x64'
+      - bash: |
+          python -m pip install wheel
+          python setup.py sdist
+          python setup.py bdist_wheel
+        displayName: Build Wheel
+      - task: PublishPipelineArtifact@0
+        inputs:
+          artifactName: 'dist'
+          targetPath: '$(System.DefaultWorkingDirectory)/dist/'
+
   - template: azure-cpython_job_template.yml
     parameters:
       platform: Linux

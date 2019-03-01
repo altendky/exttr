@@ -1,9 +1,11 @@
 parameters:
   platform: ''
   vmImage: ''
+  dependsOn: ''
 
 jobs:
 - job: ${{ parameters.platform }}_CPython
+  dependsOn: ${{ parameters.dependsOn }}
 
   pool:
     vmImage: ${{ parameters.vmImage }}
