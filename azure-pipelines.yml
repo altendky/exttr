@@ -14,6 +14,9 @@ jobs:
           python -m pip install wheel
           python setup.py sdist
           python setup.py bdist_wheel
+          pwd
+          ls -l
+          ls -l dist
         displayName: Build Wheel
       - task: PublishPipelineArtifact@0
         inputs:
