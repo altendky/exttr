@@ -21,13 +21,13 @@ jobs:
           artifactName: 'dist'
           targetPath: '$(System.DefaultWorkingDirectory)/dist/'
 
-  - template: azure-cpython_job_template.yml
+  - template: azure/jobs/cpython.yml
     parameters:
       platform: Linux
       vmImage: 'ubuntu-16.04'
       dependsOn: build_wheel
 
-  - template: azure-pypy_job_template.yml
+  - template: azure/jobs/pypy.yml
     parameters:
       platform: Linux
       vmImage: 'ubuntu-16.04'
@@ -36,13 +36,13 @@ jobs:
       extracter: 'tar -xvf'
       dependsOn: build_wheel
 
-  - template: azure-cpython_job_template.yml
+  - template: azure/jobs/cpython.yml
     parameters:
       platform: macOS
       vmImage: 'macOS-10.13'
       dependsOn: build_wheel
 
-  - template: azure-pypy_job_template.yml
+  - template: azure/jobs/pypy.yml
     parameters:
       platform: macOS
       vmImage: 'macOS-10.13'
@@ -51,13 +51,13 @@ jobs:
       extracter: 'tar -xvf'
       dependsOn: build_wheel
 
-  - template: azure-cpython_job_template.yml
+  - template: azure/jobs/cpython.yml
     parameters:
       platform: Windows
       vmImage: 'vs2017-win2016'
       dependsOn: build_wheel
 
-  - template: azure-pypy_job_template.yml
+  - template: azure/jobs/pypy.yml
     parameters:
       platform: Windows
       vmImage: 'vs2017-win2016'

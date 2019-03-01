@@ -36,7 +36,7 @@ jobs:
     maxParallel: 4
 
   steps:
-    - template: azure-download_artifact_step_template.yml
+    - template: ../steps/download_artifact.yml
     - task: UsePythonVersion@0
       inputs:
         versionSpec: '$(python.version)'
