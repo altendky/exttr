@@ -1,0 +1,8 @@
+steps:
+  - task: DownloadPipelineArtifact@0
+    inputs:
+      artifactName: 'dist'
+      targetPath: $(System.DefaultWorkingDirectory)
+  - bash: |
+      ls -l
+      ls -l dist
