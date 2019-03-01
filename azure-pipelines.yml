@@ -1,4 +1,5 @@
-trigger: master
+trigger:
+  - master
 
 jobs:
   - template: azure-cpython_job_template.yml
