@@ -34,7 +34,7 @@ jobs:
         python.architecture: 'x64'
         tox.env: 'py37'
       pypy:
-        python.version: 'pypy'
+        python.version: 'pypy2'
         python.architecture: 'x64'
         tox.env: 'pypy'
       pypy3:
