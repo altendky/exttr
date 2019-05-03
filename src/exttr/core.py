@@ -12,6 +12,7 @@ attr_ib_keywords = exttr._utility.get_parameter_names(attr.ib)
 
 metadata_name = 'exttr'
 
+
 class UnknownKeywordError(Exception):
     pass
 
@@ -40,8 +41,7 @@ def get(cls, attribute, extra):
 class Keyword(object):
     name = attr.ib()
     uuid = attr.ib(
-        default=None,
-        converter=lambda x: None if x is None else uuid.UUID(x),
+        default=None, converter=lambda x: None if x is None else uuid.UUID(x)
     )
 
 
@@ -65,27 +65,23 @@ class Registry(object):
                     raise AttrsCollisionError(keyword)
 
                 for other_keyword in self.keywords():
-                    name_collision = (
-                        (keyword == other_keyword)
-                        and (keyword.uuid is None)
+                    name_collision = (keyword == other_keyword) and (
+                        keyword.uuid is None
                     )
 
-                    uuid_collision = (
-                        (keyword.uuid == other_keyword.uuid)
-                        and (keyword.name != other_keyword.name)
+                    uuid_collision = (keyword.uuid == other_keyword.uuid) and (
+                        keyword.name != other_keyword.name
                     )
 
-                    uuid_mismatch = (
-                        (keyword.uuid != other_keyword.uuid)
-                        and (keyword.name == other_keyword.name)
+                    uuid_mismatch = (keyword.uuid != other_keyword.uuid) and (
+                        keyword.name == other_keyword.name
                     )
 
                     if name_collision or uuid_collision or uuid_mismatch:
                         raise KeywordCollisionError(
                             'Existing: {}, New: {}'.format(
-                                other_keyword,
-                                keyword,
-                            ),
+                                other_keyword, keyword
+                            )
                         )
 
             self.plugins.append(plugin)
@@ -100,39 +96,32 @@ class Registry(object):
     def create_attribute(self, *args, **kwargs):
         extra_names = set(kwargs.keys()) - set(attr_ib_keywords)
 
-        unknown_names = (
-            extra_names - {keyword.name for keyword in self.keywords()}
-        )
+        unknown_names = extra_names - {
+            keyword.name for keyword in self.keywords()
+        }
 
         if len(unknown_names) != 0:
             raise UnknownKeywordError(
-                ', '.join(repr(name) for name in unknown_names),
+                ', '.join(repr(name) for name in unknown_names)
             )
 
         metadata = kwargs.setdefault('metadata', {})
         exttrs_metadata = metadata.setdefault(metadata_name, {})
 
-        extras = {
-            k: v
-            for k, v in kwargs.items() 
-            if k in extra_names
-        }
+        extras = {k: v for k, v in kwargs.items() if k in extra_names}
 
         exttrs_metadata.update(extras)
 
         basics = collections.OrderedDict(
-            (k, v)
-            for k, v in kwargs.items() 
-            if k in attr_ib_keywords
+            (k, v) for k, v in kwargs.items() if k in attr_ib_keywords
         )
 
         return attr.ib(*args, **basics)
 
     def keywords(self):
-        return set(itertools.chain.from_iterable(
-            (
-                keyword
-                for keyword in plugin.keywords
+        return set(
+            itertools.chain.from_iterable(
+                (keyword for keyword in plugin.keywords)
+                for plugin in self.plugins
             )
-            for plugin in self.plugins
-        ))
+        )
