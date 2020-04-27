@@ -8,7 +8,7 @@ Integrating extra metadata into attr.ib()
 .. |PyPI| image:: https://img.shields.io/pypi/v/exttr.svg
    :alt: PyPI version
    :target: https://pypi.org/project/exttr/
-
+ 
 .. |Pythons| image:: https://img.shields.io/pypi/pyversions/exttr.svg
    :alt: supported Python versions
    :target: https://pypi.org/project/exttr/
